@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10:9 Media — Christian Media & Storytelling</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#000;color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden}
+
+/* CANVAS */
+#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:rgba(0,0,0,0.0);transition:background .4s,padding .3s}
+nav.scrolled{background:rgba(0,0,0,0.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.08);padding:14px 48px}
+.logo{display:flex;align-items:center;gap:14px;text-decoration:none}
+.logo-ring{width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,0.7);display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);transition:border-color .3s,box-shadow .3s}
+.logo-ring:hover{border-color:#fff;box-shadow:0 0 24px rgba(255,255,255,0.4)}
+.logo-10{font-family:'Bebas Neue',sans-serif;font-size:20px;line-height:1;color:#fff}
+.logo-nine{font-family:'Bebas Neue',sans-serif;font-size:9px;line-height:1;color:#888;letter-spacing:1px}
+.logo-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:4px;display:block}
+.logo-sub{font-size:9px;letter-spacing:3px;color:#666;text-transform:uppercase;display:block;margin-top:-2px}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-btn{padding:10px 22px;border:1px solid rgba(255,255,255,0.3);color:#fff;text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:all .2s}
+.nav-btn:hover{background:#fff;color:#000;border-color:#fff}
+
+/* SECTIONS */
+section{position:relative;z-index:1}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;pointer-events:none}
+.hero-inner{padding:120px 24px 60px;pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#c9a84c;border:1px solid rgba(201,168,76,0.3);padding:8px 22px;margin-bottom:32px}
+.hero-badge::before,.hero-badge::after{content:'—';opacity:.4}
+h1.big{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,14vw,160px);letter-spacing:4px;line-height:.88;margin-bottom:18px;text-shadow:0 0 80px rgba(255,255,255,0.15)}
+h1.big .ol{-webkit-text-stroke:1.5px rgba(255,255,255,0.7);color:transparent}
+.hero-verse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(15px,2.2vw,20px);color:rgba(255,255,255,0.55);max-width:540px;margin:0 auto 52px;line-height:1.7}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;pointer-events:all}
+.btn-solid{padding:16px 44px;background:#fff;color:#000;text-decoration:none;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:700;display:inline-block;transition:all .25s}
+.btn-solid:hover{background:#e8e8e8;transform:translateY(-2px);box-shadow:0 12px 40px rgba(255,255,255,0.2)}
+.btn-ghost{padding:16px 44px;border:1px solid rgba(255,255,255,0.35);color:#fff;text-decoration:none;font-size:11px;letter-spacing:3px;text-transform:uppercase;display:inline-block;transition:all .2s}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,0.06)}
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,0.3);font-size:9px;letter-spacing:3px;text-transform:uppercase;animation:bob 2.5s ease-in-out infinite}
+.scroll-bar{width:1px;height:44px;background:linear-gradient(to bottom,rgba(255,255,255,0.3),transparent)}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* TICKER */
+.ticker{background:#fff;overflow:hidden;padding:13px 0;position:relative;z-index:2}
+.ticker-track{display:flex;white-space:nowrap;animation:slide 26s linear infinite}
+.ti{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:4px;color:#000;padding:0 28px}
+.sep{color:#c9a84c}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SERVICES (3D canvas area) */
+#services{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 48px}
+.section-header{text-align:center;margin-bottom:60px}
+.lbl{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#555;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:14px}
+.lbl::before,.lbl::after{content:'';width:28px;height:1px;background:#555}
+.stitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,6vw,68px);letter-spacing:3px;line-height:.95}
+#svc-canvas{width:100%;max-width:1100px;height:500px;display:block;cursor:grab;border:1px solid rgba(255,255,255,0.05)}
+#svc-canvas:active{cursor:grabbing}
+.svc-hint{font-size:11px;letter-spacing:2px;color:#444;text-transform:uppercase;text-align:center;margin-top:16px}
+
+/* MISSION */
+#mission{padding:100px 48px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.mission-text .stitle{text-align:left;margin-bottom:24px}
+.mission-text p{font-size:16px;line-height:1.85;color:rgba(255,255,255,0.55)}
+.mission-text p+p{margin-top:14px}
+.pull-quote{border-left:3px solid #c9a84c;padding-left:26px;margin-top:36px}
+.pull-quote blockquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;line-height:1.65;color:#fff}
+.pull-quote cite{font-size:11px;letter-spacing:2px;color:#c9a84c;display:block;margin-top:8px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.07)}
+.stat{background:#000;padding:38px;text-align:center}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:54px;color:#fff;line-height:1;display:block}
+.stat-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#555;margin-top:4px;display:block}
+
+/* CONTACT */
+#contact{background:#fff;color:#000;padding:100px 48px}
+.contact-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+#contact .lbl{color:#999;justify-content:flex-start}
+#contact .lbl::before,#contact .lbl::after{background:#ccc}
+#contact .stitle{color:#000;text-align:left}
+.contact-info p{font-size:16px;color:#555;line-height:1.8;margin-top:20px;margin-bottom:32px}
+.clinks{display:flex;flex-direction:column;gap:12px}
+.clink{display:flex;align-items:center;gap:14px;text-decoration:none;color:#000;font-size:14px;transition:opacity .2s}
+.clink:hover{opacity:.45}
+.clink-ico{width:36px;height:36px;border:1px solid #000;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.cform{display:flex;flex-direction:column;gap:12px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ff input,.ff textarea,.ff select{width:100%;padding:14px;border:1px solid rgba(0,0,0,0.18);background:transparent;color:#000;font-family:'Inter',sans-serif;font-size:14px;outline:none;transition:border-color .2s;-webkit-appearance:none;border-radius:0}
+.ff input:focus,.ff textarea:focus,.ff select:focus{border-color:#000}
+.ff input::placeholder,.ff textarea::placeholder{color:#aaa}
+.ff textarea{height:100px;resize:none}
+.csubmit{padding:16px;background:#000;color:#fff;border:none;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;width:100%;transition:opacity .2s}
+.csubmit:hover{opacity:.8}
+
+/* FOOTER */
+footer{background:#050505;border-top:1px solid rgba(255,255,255,0.06);padding:26px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:relative;z-index:2}
+.flogo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:4px}
+.fverse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(201,168,76,0.6)}
+.fcopy{font-size:11px;color:#444;letter-spacing:1px}
+.flinks{display:flex;gap:18px}
+.flinks a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#444;text-decoration:none;transition:color .2s}
+.flinks a:hover{color:#fff}
+
+@media(max-width:800px){
+nav{padding:14px 20px}
+.nav-links,.nav-btn{display:none}
+#mission{grid-template-columns:1fr;gap:40px;padding:60px 20px}
+.contact-inner{grid-template-columns:1fr;gap:36px;padding:60px 20px}
+#services{padding:60px 20px}
+.row2{grid-template-columns:1fr}
+footer{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<nav id="nav">
+  <a href="#" class="logo">
+    <div class="logo-ring"><span class="logo-10">10</span><span class="logo-nine">9INE</span></div>
+    <div><span class="logo-name">10:9 Media</span><span class="logo-sub">Christian Media</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:stephen@ten9media.com" class="nav-btn">Get Coverage</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Romans 10:9</div>
+    <h1 class="big">10:9<br><span class="ol">MEDIA</span></h1>
+    <p class="hero-verse">"That if you confess with your mouth the Lord Jesus, and believe in your heart that God raised him from the dead, you will be saved."</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-solid">Our Services</a>
+      <a href="#contact" class="btn-ghost">Submit Your Story</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><span class="scroll-bar"></span>Scroll</div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" style="position:relative;z-index:2">
+  <div class="ticker-track">
+    <span class="ti">10:9 MEDIA</span><span class="ti sep">✦</span>
+    <span class="ti">CHRISTIAN MEDIA</span><span class="ti sep">✦</span>
+    <span class="ti">ROMANS 10:9</span><span class="ti sep">✦</span>
+    <span class="ti">WE MAKE BETTER STORIES</span><span class="ti sep">✦</span>
+    <span class="ti">FAITH · MEDIA · COMMUNITY</span><span class="ti sep">✦</span>
+    <span class="ti">#TEN9PROMO</span><span class="ti sep">✦</span>
+    <span class="ti">10:9 MEDIA</span><span class="ti sep">✦</span>
+    <span class="ti">CHRISTIAN MEDIA</span><span class="ti sep">✦</span>
+    <span class="ti">ROMANS 10:9</span><span class="ti sep">✦</span>
+    <span class="ti">WE MAKE BETTER STORIES</span><span class="ti sep">✦</span>
+    <span class="ti">FAITH · MEDIA · COMMUNITY</span><span class="ti sep">✦</span>
+    <span class="ti">#TEN9PROMO</span><span class="ti sep">✦</span>
+  </div>
+</div>
+
+<!-- SERVICES - 3D -->
+<section id="services">
+  <div class="section-header">
+    <p class="lbl">What We Do</p>
+    <h2 class="stitle">OUR SERVICES<br>IN 3D</h2>
+  </div>
+  <canvas id="svc-canvas"></canvas>
+  <p class="svc-hint">Drag to rotate · Hover to inspect</p>
+</section>
+
+<!-- MISSION -->
+<section id="mission">
+  <div class="mission-text">
+    <p class="lbl" style="justify-content:flex-start">Our Mission</p>
+    <h2 class="stitle">THE STORY<br>BEHIND<br>THE STORY</h2>
+    <p>10:9 Media is an independent Christian media company rooted in Romans 10:9. We exist to amplify faith-based voices, cover events through a Christian lens, and promote artists who create for the Kingdom.</p>
+    <p>From community events to Christian artist features — we go where the story is and tell it with clarity, conviction, and creativity.</p>
+    <div class="pull-quote">
+      <blockquote>"If you confess with your mouth the Lord Jesus, and believe in your heart that God raised him from the dead, you will be saved."</blockquote>
+      <cite>— Romans 10:9</cite>
+    </div>
+  </div>
+  <div>
+    <div class="stat-grid">
+      <div class="stat"><span class="stat-n">25K</span><span class="stat-l">Posts Published</span></div>
+      <div class="stat"><span class="stat-n">1.1K</span><span class="stat-l">Community</span></div>
+      <div class="stat"><span class="stat-n">7+</span><span class="stat-l">Years Active</span></div>
+      <div class="stat"><span class="stat-n">100%</span><span class="stat-l">Faith Driven</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div>
+      <p class="lbl">Get In Touch</p>
+      <h2 class="stitle">SUBMIT<br>YOUR<br>STORY</h2>
+      <p class="contact-info">Christian artist needing promotion? Event to cover? Want to partner with us? Reach out.</p>
+      <div class="clinks">
+        <a href="mailto:stephen@ten9media.com" class="clink"><div class="clink-ico">@</div>stephen@ten9media.com</a>
+        <a href="https://www.instagram.com/ten9media1" target="_blank" class="clink"><div class="clink-ico">IG</div>@ten9media1</a>
+        <a href="https://www.facebook.com/ten9media1" target="_blank" class="clink"><div class="clink-ico">fb</div>10:9 Media on Facebook</a>
+      </div>
+    </div>
+    <form class="cform" onsubmit="handleForm(event)">
+      <div class="row2">
+        <div class="ff"><input type="text" placeholder="Your Name" required></div>
+        <div class="ff"><input type="email" placeholder="Email Address" required></div>
+      </div>
+      <div class="ff">
+        <select><option value="" disabled selected>Type of Inquiry</option>
+        <option>Artist Promotion (#Ten9Promo)</option>
+        <option>Event Coverage Request</option>
+        <option>Media Partnership</option>
+        <option>Submit Content</option>
+        <option>Interview / Feature</option>
+        <option>Other</option></select>
+      </div>
+      <div class="ff"><input type="text" placeholder="Ministry / Brand / Project (optional)"></div>
+      <div class="ff"><textarea placeholder="Tell us about your project or inquiry..."></textarea></div>
+      <button type="submit" class="csubmit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="flogo">10:9 MEDIA</div>
+  <span class="fverse">"...you will be saved." — Romans 10:9</span>
+  <span class="fcopy">© 2026 10:9 Media. All rights reserved.</span>
+  <div class="flinks">
+    <a href="https://www.instagram.com/ten9media1" target="_blank">Instagram</a>
+    <a href="https://www.facebook.com/ten9media1" target="_blank">Facebook</a>
+    <a href="mailto:stephen@ten9media.com">Email</a>
+  </div>
+</footer>
+
+<!-- THREE.JS CDN -->
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+/* ───────────────────────── HERO BG SCENE ───────────────────────── */
+{
+  const canvas = document.getElementById('bg');
+  const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0x000000, 1);
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.2;
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x000000, 0.08);
+
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 100);
+  camera.position.set(0, 0, 6);
+
+  // ── Cross ──
+  function buildCross(mat) {
+    const g = new THREE.Group();
+    const vMesh = new THREE.Mesh(new THREE.BoxGeometry(0.28, 3.2, 0.28), mat);
+    const hMesh = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.28, 0.28), mat);
+    hMesh.position.y = 0.65;
+    g.add(vMesh, hMesh);
+    return g;
+  }
+
+  const crossMat = new THREE.MeshStandardMaterial({
+    color: 0xffffff,
+    emissive: 0xffffff,
+    emissiveIntensity: 0.08,
+    roughness: 0.1,
+    metalness: 0.9,
+    transparent: true,
+    opacity: 0.55,
+  });
+
+  const crossMain = buildCross(crossMat);
+  crossMain.position.set(0, 0, 0);
+  crossMain.scale.setScalar(1.4);
+  scene.add(crossMain);
+
+  // Ghost crosses behind
+  const ghostMat = new THREE.MeshStandardMaterial({
+    color:0xffffff, emissive:0xffffff, emissiveIntensity:0.02,
+    roughness:0.4, metalness:0.6, transparent:true, opacity:0.12, wireframe:false
+  });
+  const ghostPositions = [[-3,-1,-4],[ 3, 1,-5],[-1.5, 2,-6],[2,-2,-3]];
+  ghostPositions.forEach(([x,y,z])=>{
+    const g = buildCross(ghostMat);
+    g.position.set(x,y,z);
+    g.scale.setScalar(0.7 + Math.random()*0.8);
+    g.rotation.z = (Math.random()-0.5)*0.5;
+    scene.add(g);
+  });
+
+  // Particles
+  const pCount = 350;
+  const pPositions = new Float32Array(pCount * 3);
+  for(let i=0;i<pCount;i++){
+    pPositions[i*3]   = (Math.random()-0.5)*18;
+    pPositions[i*3+1] = (Math.random()-0.5)*14;
+    pPositions[i*3+2] = (Math.random()-0.5)*10;
+  }
+  const pGeo = new THREE.BufferGeometry();
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions,3));
+  const pMat = new THREE.PointsMaterial({color:0xffffff, size:0.035, transparent:true, opacity:0.5});
+  scene.add(new THREE.Points(pGeo, pMat));
+
+  // Lights
+  scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+  const dLight = new THREE.DirectionalLight(0xffffff, 1.2);
+  dLight.position.set(3,5,5);
+  scene.add(dLight);
+  const ptA = new THREE.PointLight(0xc9a84c, 3, 12);
+  ptA.position.set(-3,2,2);
+  scene.add(ptA);
+  const ptB = new THREE.PointLight(0xffffff, 2, 10);
+  ptB.position.set(3,-1,3);
+  scene.add(ptB);
+
+  // Mouse
+  let mx=0, my=0;
+  window.addEventListener('mousemove', e=>{
+    mx = (e.clientX/window.innerWidth - 0.5)*2;
+    my = -(e.clientY/window.innerHeight - 0.5)*2;
+  });
+
+  window.addEventListener('resize',()=>{
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+  });
+
+  const clock = new THREE.Clock();
+  function animBG(){
+    requestAnimationFrame(animBG);
+    const t = clock.getElapsedTime();
+
+    crossMain.rotation.y = Math.sin(t*0.15)*0.25 + mx*0.12;
+    crossMain.rotation.x = Math.sin(t*0.1)*0.12 + my*0.08;
+    crossMain.rotation.z = Math.sin(t*0.08)*0.06;
+
+    ghostPositions.forEach((_,i)=>{
+      const c = scene.children.find((ch,ci)=> ch.isGroup && ci===i+2);
+      if(c){ c.rotation.y += 0.002; c.rotation.z += 0.001; }
+    });
+
+    ptA.position.x = Math.sin(t*0.4)*4;
+    ptA.position.y = Math.cos(t*0.3)*2;
+    ptB.position.x = Math.cos(t*0.3)*3;
+
+    renderer.render(scene, camera);
+  }
+  animBG();
+}
+
+/* ───────────────────────── SERVICE CARDS 3D ───────────────────────── */
+{
+  const canvas2 = document.getElementById('svc-canvas');
+  const W = canvas2.clientWidth, H = canvas2.clientHeight;
+  const renderer2 = new THREE.WebGLRenderer({canvas:canvas2, antialias:true, alpha:false});
+  renderer2.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  renderer2.setSize(W, H);
+  renderer2.setClearColor(0x050505, 1);
+  renderer2.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer2.toneMappingExposure = 1.1;
+
+  const scene2 = new THREE.Scene();
+  scene2.fog = new THREE.FogExp2(0x050505, 0.05);
+
+  const cam2 = new THREE.PerspectiveCamera(45, W/H, 0.1, 100);
+  cam2.position.set(0, 0, 10);
+
+  const controls = new OrbitControls(cam2, canvas2);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.06;
+  controls.minDistance = 5;
+  controls.maxDistance = 18;
+  controls.maxPolarAngle = Math.PI*0.7;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 0.5;
+
+  // Lights
+  scene2.add(new THREE.AmbientLight(0xffffff, 0.4));
+  const d2 = new THREE.DirectionalLight(0xffffff, 1.4);
+  d2.position.set(5,8,5); scene2.add(d2);
+  const pt2a = new THREE.PointLight(0xc9a84c, 4, 20);
+  pt2a.position.set(-5,3,3); scene2.add(pt2a);
+  const pt2b = new THREE.PointLight(0x4488ff, 2, 15);
+  pt2b.position.set(5,-2,4); scene2.add(pt2b);
+
+  // Service data
+  const svcs = [
+    {label:'CHRISTIAN\nARTIST\nPROMO',   sub:'#Ten9Promo',     color:0xc9a84c},
+    {label:'EVENT\nCOVERAGE',            sub:'On Location',    color:0xffffff},
+    {label:'MEDIA\nSHARING',             sub:'Community Feed', color:0xaaaaaa},
+    {label:'INTERVIEWS\n& FEATURES',     sub:'Long-Form',      color:0xdddddd},
+    {label:'SOCIAL\nCONTENT',            sub:'Short-Form Video',color:0xbbbbbb},
+    {label:'MEDIA\nPARTNERSHIPS',        sub:'Faith Brands',   color:0xc9a84c},
+  ];
+
+  // Generate canvas texture for each card
+  function makeCardTexture(svc) {
+    const tc = document.createElement('canvas');
+    tc.width = 512; tc.height = 512;
+    const ctx = tc.getContext('2d');
+
+    // Background gradient
+    const grad = ctx.createLinearGradient(0,0,512,512);
+    grad.addColorStop(0,'#0a0a0a');
+    grad.addColorStop(1,'#111');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0,0,512,512);
+
+    // Border
+    ctx.strokeStyle = `rgba(255,255,255,0.15)`;
+    ctx.lineWidth = 3;
+    ctx.strokeRect(8,8,496,496);
+
+    // Inner accent line (gold)
+    const r = ((svc.color>>16)&0xff), g2=((svc.color>>8)&0xff), b=(svc.color&0xff);
+    ctx.strokeStyle = `rgb(${r},${g2},${b})`;
+    ctx.lineWidth = 2;
+    ctx.strokeRect(20,20,472,472);
+
+    // Small cross icon top-left
+    ctx.fillStyle = `rgba(${r},${g2},${b},0.5)`;
+    ctx.fillRect(44, 44, 6, 28);
+    ctx.fillRect(38, 52, 18, 6);
+
+    // Number
+    ctx.fillStyle = `rgba(255,255,255,0.06)`;
+    ctx.font = 'bold 180px Arial';
+    ctx.textAlign = 'right';
+    ctx.fillText(String(svcs.indexOf(svc)+1).padStart(2,'0'), 490, 220);
+
+    // Label
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 56px Arial';
+    ctx.textAlign = 'left';
+    const lines = svc.label.split('\n');
+    lines.forEach((l,i)=> ctx.fillText(l, 44, 280 + i*62));
+
+    // Sub label
+    ctx.fillStyle = `rgb(${r},${g2},${b})`;
+    ctx.font = '26px Arial';
+    ctx.letterSpacing = '3px';
+    ctx.fillText(svc.sub.toUpperCase(), 44, 440);
+
+    // Bottom line
+    ctx.fillStyle = `rgba(${r},${g2},${b},0.4)`;
+    ctx.fillRect(44, 460, 120, 2);
+
+    return new THREE.CanvasTexture(tc);
+  }
+
+  // Place cards in a ring
+  const cards = [];
+  const radius = 5;
+  svcs.forEach((svc,i)=>{
+    const angle = (i/svcs.length) * Math.PI*2;
+    const geo = new THREE.BoxGeometry(2.8, 2.8, 0.18);
+    const tex = makeCardTexture(svc);
+    const mat = new THREE.MeshStandardMaterial({
+      map: tex,
+      roughness: 0.2,
+      metalness: 0.5,
+    });
+    const edgeMat = new THREE.MeshStandardMaterial({color:0x111111, roughness:0.8});
+    const mats = [edgeMat,edgeMat,edgeMat,edgeMat,mat,edgeMat];
+    const mesh = new THREE.Mesh(geo, mats);
+
+    mesh.position.x = Math.sin(angle)*radius;
+    mesh.position.y = Math.cos(angle*0.5)*0.8;
+    mesh.position.z = Math.cos(angle)*radius;
+    mesh.rotation.y = -angle;
+    mesh.userData = {baseAngle:angle, baseY:mesh.position.y};
+
+    scene2.add(mesh);
+    cards.push(mesh);
+  });
+
+  // Floating cross at center
+  function buildSmallCross(mat){
+    const g=new THREE.Group();
+    g.add(new THREE.Mesh(new THREE.BoxGeometry(0.12,1.4,0.12),mat));
+    const h=new THREE.Mesh(new THREE.BoxGeometry(0.8,0.12,0.12),mat);
+    h.position.y=0.28; g.add(h);
+    return g;
+  }
+  const cmat2 = new THREE.MeshStandardMaterial({color:0xffffff,emissive:0xffffff,emissiveIntensity:0.3,roughness:0.1,metalness:0.9,transparent:true,opacity:0.7});
+  const centerCross = buildSmallCross(cmat2);
+  scene2.add(centerCross);
+
+  // Raycaster for hover
+  const raycaster = new THREE.Raycaster();
+  const pointer = new THREE.Vector2();
+  let hoveredCard = null;
+
+  canvas2.addEventListener('pointermove', e=>{
+    const rect = canvas2.getBoundingClientRect();
+    pointer.x = ((e.clientX-rect.left)/rect.width)*2-1;
+    pointer.y = -((e.clientY-rect.top)/rect.height)*2+1;
+    raycaster.setFromCamera(pointer, cam2);
+    const hits = raycaster.intersectObjects(cards);
+    if(hits.length>0){
+      if(hoveredCard !== hits[0].object){ hoveredCard = hits[0].object; controls.autoRotate=false; }
+    } else {
+      hoveredCard=null; controls.autoRotate=true;
+    }
+  });
+  canvas2.addEventListener('pointerleave', ()=>{ hoveredCard=null; controls.autoRotate=true; });
+
+  const clock2 = new THREE.Clock();
+  const resObs = new ResizeObserver(()=>{
+    const W2=canvas2.clientWidth, H2=canvas2.clientHeight;
+    renderer2.setSize(W2,H2); cam2.aspect=W2/H2; cam2.updateProjectionMatrix();
+  });
+  resObs.observe(canvas2);
+
+  function animSvc(){
+    requestAnimationFrame(animSvc);
+    const t = clock2.getElapsedTime();
+    centerCross.rotation.y = t*0.4;
+    centerCross.rotation.z = Math.sin(t*0.6)*0.15;
+    centerCross.position.y = Math.sin(t*0.5)*0.2;
+
+    cards.forEach((c,i)=>{
+      const isHov = (c===hoveredCard);
+      const targetZ = isHov ? 1.2 : 0;
+      c.position.z += (targetZ - (c.position.z - Math.cos(c.userData.baseAngle)*radius)) * 0.08;
+      c.position.y = c.userData.baseY + Math.sin(t*0.5+i)*0.15 + (isHov?0.2:0);
+      c.rotation.x += (isHov ? -0.05 : 0 - c.rotation.x)*0.06;
+      const targetScale = isHov ? 1.08 : 1.0;
+      c.scale.lerp(new THREE.Vector3(targetScale,targetScale,targetScale), 0.08);
+    });
+
+    pt2a.position.x = Math.sin(t*0.3)*6;
+    pt2a.position.z = Math.cos(t*0.3)*6;
+
+    controls.update();
+    renderer2.render(scene2, cam2);
+  }
+  animSvc();
+}
+
+/* NAV scroll */
+window.addEventListener('scroll', ()=>{
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY>60);
+});
+
+/* Form */
+function handleForm(e){
+  e.preventDefault();
+  const b=e.target.querySelector('.csubmit');
+  b.textContent="Sent! We'll be in touch ✓"; b.style.background='#333';
+  setTimeout(()=>{ b.textContent='Send Message'; b.style.background='#000'; e.target.reset(); },4000);
+}
+window.handleForm = handleForm;
+</script>
+</body>
+</html>
