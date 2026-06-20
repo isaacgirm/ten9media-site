@@ -3,118 +3,109 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>10:9 Media — Christian Media & Storytelling</title>
+<title>10:9 Media — Christian Media Group</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:#000;color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden}
 
-/* CANVAS */
 #bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:rgba(0,0,0,0.0);transition:background .4s,padding .3s}
-nav.scrolled{background:rgba(0,0,0,0.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.08);padding:14px 48px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px 52px;transition:all .4s}
+nav.s{background:rgba(0,0,0,0.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.07);padding:14px 52px}
 .logo{display:flex;align-items:center;gap:14px;text-decoration:none}
-.logo-ring{width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,0.7);display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);transition:border-color .3s,box-shadow .3s}
-.logo-ring:hover{border-color:#fff;box-shadow:0 0 24px rgba(255,255,255,0.4)}
-.logo-10{font-family:'Bebas Neue',sans-serif;font-size:20px;line-height:1;color:#fff}
-.logo-nine{font-family:'Bebas Neue',sans-serif;font-size:9px;line-height:1;color:#888;letter-spacing:1px}
-.logo-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:4px;display:block}
-.logo-sub{font-size:9px;letter-spacing:3px;color:#666;text-transform:uppercase;display:block;margin-top:-2px}
-.nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+.ring{width:50px;height:50px;border-radius:50%;border:2px solid rgba(255,255,255,0.6);display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);transition:all .3s}
+.ring:hover{border-color:#fff;box-shadow:0 0 28px rgba(255,255,255,0.35)}
+.r10{font-family:'Bebas Neue',sans-serif;font-size:21px;color:#fff;line-height:1}
+.r9{font-family:'Bebas Neue',sans-serif;font-size:9px;color:#777;letter-spacing:1px;line-height:1}
+.ln{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:4px;display:block;color:#fff}
+.ls{font-size:9px;letter-spacing:3px;color:#555;text-transform:uppercase;display:block;margin-top:-2px}
+.nav-links{display:flex;gap:34px;list-style:none}
+.nav-links a{color:rgba(255,255,255,.45);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
 .nav-links a:hover{color:#fff}
-.nav-btn{padding:10px 22px;border:1px solid rgba(255,255,255,0.3);color:#fff;text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:all .2s}
-.nav-btn:hover{background:#fff;color:#000;border-color:#fff}
-
-/* SECTIONS */
-section{position:relative;z-index:1}
+.nav-cta{padding:10px 24px;border:1px solid rgba(255,255,255,.3);color:#fff;text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:all .2s}
+.nav-cta:hover{background:#fff;color:#000;border-color:#fff}
 
 /* HERO */
-#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;pointer-events:none}
-.hero-inner{padding:120px 24px 60px;pointer-events:none}
-.hero-badge{display:inline-flex;align-items:center;gap:10px;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#c9a84c;border:1px solid rgba(201,168,76,0.3);padding:8px 22px;margin-bottom:32px}
-.hero-badge::before,.hero-badge::after{content:'—';opacity:.4}
-h1.big{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,14vw,160px);letter-spacing:4px;line-height:.88;margin-bottom:18px;text-shadow:0 0 80px rgba(255,255,255,0.15)}
-h1.big .ol{-webkit-text-stroke:1.5px rgba(255,255,255,0.7);color:transparent}
-.hero-verse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(15px,2.2vw,20px);color:rgba(255,255,255,0.55);max-width:540px;margin:0 auto 52px;line-height:1.7}
-.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;pointer-events:all}
-.btn-solid{padding:16px 44px;background:#fff;color:#000;text-decoration:none;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:700;display:inline-block;transition:all .25s}
-.btn-solid:hover{background:#e8e8e8;transform:translateY(-2px);box-shadow:0 12px 40px rgba(255,255,255,0.2)}
-.btn-ghost{padding:16px 44px;border:1px solid rgba(255,255,255,0.35);color:#fff;text-decoration:none;font-size:11px;letter-spacing:3px;text-transform:uppercase;display:inline-block;transition:all .2s}
-.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,0.06)}
-.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,0.3);font-size:9px;letter-spacing:3px;text-transform:uppercase;animation:bob 2.5s ease-in-out infinite}
-.scroll-bar{width:1px;height:44px;background:linear-gradient(to bottom,rgba(255,255,255,0.3),transparent)}
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;z-index:1;pointer-events:none}
+.hi{padding:120px 24px 60px;pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:10px;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#c9a84c;border:1px solid rgba(201,168,76,.3);padding:8px 24px;margin-bottom:34px;opacity:0;transform:translateY(20px)}
+.h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,14vw,158px);letter-spacing:4px;line-height:.86;margin-bottom:20px;text-shadow:0 0 100px rgba(255,255,255,.1);opacity:0;transform:translateY(30px)}
+.h1 .ol{-webkit-text-stroke:1.5px rgba(255,255,255,.6);color:transparent}
+.hv{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(15px,2.2vw,20px);color:rgba(255,255,255,.5);max-width:520px;margin:0 auto 54px;line-height:1.75;opacity:0;transform:translateY(20px)}
+.hbtns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;pointer-events:all;opacity:0;transform:translateY(20px)}
+.b1{padding:16px 46px;background:#fff;color:#000;text-decoration:none;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:700;display:inline-block;transition:all .25s}
+.b1:hover{background:#e0e0e0;transform:translateY(-2px);box-shadow:0 14px 42px rgba(255,255,255,.2)}
+.b2{padding:16px 46px;border:1px solid rgba(255,255,255,.35);color:#fff;text-decoration:none;font-size:11px;letter-spacing:3px;text-transform:uppercase;display:inline-block;transition:all .2s}
+.b2:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+.scue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.25);font-size:9px;letter-spacing:3px;text-transform:uppercase;animation:bob 2.6s ease-in-out infinite}
+.sbar{width:1px;height:42px;background:linear-gradient(to bottom,rgba(255,255,255,.25),transparent)}
 @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
 
 /* TICKER */
-.ticker{background:#fff;overflow:hidden;padding:13px 0;position:relative;z-index:2}
-.ticker-track{display:flex;white-space:nowrap;animation:slide 26s linear infinite}
-.ti{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:4px;color:#000;padding:0 28px}
-.sep{color:#c9a84c}
-@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tick{background:#fff;overflow:hidden;padding:13px 0;position:relative;z-index:2}
+.tt{display:flex;white-space:nowrap;animation:sl 28s linear infinite}
+.ti{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:4px;color:#000;padding:0 26px}
+.sp{color:#c9a84c}
+@keyframes sl{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* SERVICES (3D canvas area) */
-#services{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 48px}
-.section-header{text-align:center;margin-bottom:60px}
-.lbl{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#555;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:14px}
-.lbl::before,.lbl::after{content:'';width:28px;height:1px;background:#555}
-.stitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,6vw,68px);letter-spacing:3px;line-height:.95}
-#svc-canvas{width:100%;max-width:1100px;height:500px;display:block;cursor:grab;border:1px solid rgba(255,255,255,0.05)}
-#svc-canvas:active{cursor:grabbing}
-.svc-hint{font-size:11px;letter-spacing:2px;color:#444;text-transform:uppercase;text-align:center;margin-top:16px}
+/* PRODUCTS 3D */
+#products{position:relative;z-index:1;padding:100px 0;text-align:center;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.sh{margin-bottom:60px}
+.lbl{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#555;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px}
+.lbl::before,.lbl::after{content:'';width:28px;height:1px;background:#444}
+.st{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5.5vw,64px);letter-spacing:3px;line-height:.95}
+#pcanvas{display:block;width:100%;max-width:1200px;height:560px;cursor:grab}
+#pcanvas:active{cursor:grabbing}
+.phint{font-size:11px;letter-spacing:2px;color:#333;text-transform:uppercase;margin-top:18px}
 
-/* MISSION */
-#mission{padding:100px 48px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.mission-text .stitle{text-align:left;margin-bottom:24px}
-.mission-text p{font-size:16px;line-height:1.85;color:rgba(255,255,255,0.55)}
-.mission-text p+p{margin-top:14px}
-.pull-quote{border-left:3px solid #c9a84c;padding-left:26px;margin-top:36px}
-.pull-quote blockquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;line-height:1.65;color:#fff}
-.pull-quote cite{font-size:11px;letter-spacing:2px;color:#c9a84c;display:block;margin-top:8px}
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.07)}
-.stat{background:#000;padding:38px;text-align:center}
-.stat-n{font-family:'Bebas Neue',sans-serif;font-size:54px;color:#fff;line-height:1;display:block}
-.stat-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#555;margin-top:4px;display:block}
+/* ABOUT */
+#about{position:relative;z-index:1;padding:100px 52px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center}
+.at .st{text-align:left;margin-bottom:26px}
+.at p{font-size:16px;line-height:1.9;color:rgba(255,255,255,.5)}
+.at p+p{margin-top:14px}
+.pq{border-left:3px solid #c9a84c;padding-left:28px;margin-top:38px}
+.pq q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.65;color:#fff;quotes:none}
+.pq cite{font-size:11px;letter-spacing:2px;color:#c9a84c;display:block;margin-top:8px}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07)}
+.ss{background:#000;padding:40px;text-align:center}
+.sn{font-family:'Bebas Neue',sans-serif;font-size:54px;color:#fff;line-height:1;display:block}
+.sl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#444;margin-top:4px;display:block}
 
 /* CONTACT */
-#contact{background:#fff;color:#000;padding:100px 48px}
-.contact-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-#contact .lbl{color:#999;justify-content:flex-start}
-#contact .lbl::before,#contact .lbl::after{background:#ccc}
-#contact .stitle{color:#000;text-align:left}
-.contact-info p{font-size:16px;color:#555;line-height:1.8;margin-top:20px;margin-bottom:32px}
-.clinks{display:flex;flex-direction:column;gap:12px}
-.clink{display:flex;align-items:center;gap:14px;text-decoration:none;color:#000;font-size:14px;transition:opacity .2s}
-.clink:hover{opacity:.45}
-.clink-ico{width:36px;height:36px;border:1px solid #000;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
-.cform{display:flex;flex-direction:column;gap:12px}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.ff input,.ff textarea,.ff select{width:100%;padding:14px;border:1px solid rgba(0,0,0,0.18);background:transparent;color:#000;font-family:'Inter',sans-serif;font-size:14px;outline:none;transition:border-color .2s;-webkit-appearance:none;border-radius:0}
+#contact{background:#fff;color:#000;position:relative;z-index:1}
+.cin{max-width:1100px;margin:0 auto;padding:100px 52px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.ci .lbl{color:#999;justify-content:flex-start}
+.ci .lbl::before,.ci .lbl::after{background:#ccc}
+.ci .st{color:#000;text-align:left;margin-bottom:20px}
+.ci p{font-size:16px;color:#666;line-height:1.8;margin-bottom:32px}
+.cls{display:flex;flex-direction:column;gap:12px}
+.cl{display:flex;align-items:center;gap:14px;text-decoration:none;color:#000;font-size:14px;transition:opacity .2s}
+.cl:hover{opacity:.4}
+.ci2{width:36px;height:36px;border:1px solid #000;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.cf{display:flex;flex-direction:column;gap:13px}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.ff input,.ff textarea,.ff select{width:100%;padding:14px;border:1px solid rgba(0,0,0,.18);background:transparent;color:#000;font-family:'Inter',sans-serif;font-size:14px;outline:none;transition:border-color .2s;-webkit-appearance:none;border-radius:0}
 .ff input:focus,.ff textarea:focus,.ff select:focus{border-color:#000}
 .ff input::placeholder,.ff textarea::placeholder{color:#aaa}
 .ff textarea{height:100px;resize:none}
-.csubmit{padding:16px;background:#000;color:#fff;border:none;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;width:100%;transition:opacity .2s}
-.csubmit:hover{opacity:.8}
+.csub{padding:16px;background:#000;color:#fff;border:none;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;width:100%;transition:opacity .2s}
+.csub:hover{opacity:.8}
 
-/* FOOTER */
-footer{background:#050505;border-top:1px solid rgba(255,255,255,0.06);padding:26px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:relative;z-index:2}
-.flogo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:4px}
-.fverse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(201,168,76,0.6)}
-.fcopy{font-size:11px;color:#444;letter-spacing:1px}
-.flinks{display:flex;gap:18px}
-.flinks a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#444;text-decoration:none;transition:color .2s}
-.flinks a:hover{color:#fff}
-
+footer{background:#040404;border-top:1px solid rgba(255,255,255,.06);padding:26px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:relative;z-index:2}
+.fl{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:4px}
+.fv{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(201,168,76,.6)}
+.fc{font-size:11px;color:#333;letter-spacing:1px}
+.fls{display:flex;gap:18px}
+.fls a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#333;text-decoration:none;transition:color .2s}
+.fls a:hover{color:#fff}
 @media(max-width:800px){
 nav{padding:14px 20px}
-.nav-links,.nav-btn{display:none}
-#mission{grid-template-columns:1fr;gap:40px;padding:60px 20px}
-.contact-inner{grid-template-columns:1fr;gap:36px;padding:60px 20px}
-#services{padding:60px 20px}
-.row2{grid-template-columns:1fr}
+.nav-links,.nav-cta{display:none}
+#about{grid-template-columns:1fr;gap:44px;padding:60px 20px}
+.cin{grid-template-columns:1fr;gap:40px;padding:60px 20px}
+.r2{grid-template-columns:1fr}
 footer{flex-direction:column;text-align:center}
 }
 </style>
@@ -125,452 +116,382 @@ footer{flex-direction:column;text-align:center}
 
 <nav id="nav">
   <a href="#" class="logo">
-    <div class="logo-ring"><span class="logo-10">10</span><span class="logo-nine">9INE</span></div>
-    <div><span class="logo-name">10:9 Media</span><span class="logo-sub">Christian Media</span></div>
+    <div class="ring"><span class="r10">10</span><span class="r9">9INE</span></div>
+    <div><span class="ln">10:9 Media</span><span class="ls">Christian Media Group</span></div>
   </a>
   <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#mission">Mission</a></li>
+    <li><a href="#products">Media</a></li>
+    <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="mailto:stephen@ten9media.com" class="nav-btn">Get Coverage</a>
+  <a href="mailto:stephen@ten9media.com" class="nav-cta">Get Coverage</a>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
-  <div class="hero-inner">
-    <div class="hero-badge">Romans 10:9</div>
-    <h1 class="big">10:9<br><span class="ol">MEDIA</span></h1>
-    <p class="hero-verse">"That if you confess with your mouth the Lord Jesus, and believe in your heart that God raised him from the dead, you will be saved."</p>
-    <div class="hero-btns">
-      <a href="#services" class="btn-solid">Our Services</a>
-      <a href="#contact" class="btn-ghost">Submit Your Story</a>
+  <div class="hi">
+    <div class="badge" id="badge">Romans 10:9</div>
+    <h1 class="h1" id="h1">10:9<br><span class="ol">MEDIA</span></h1>
+    <p class="hv" id="hv">"That if you confess with your mouth the Lord Jesus, and believe in your heart that God raised him from the dead, you will be saved."</p>
+    <div class="hbtns" id="hbtns">
+      <a href="#products" class="b1">Our Media</a>
+      <a href="#contact" class="b2">Submit Your Story</a>
     </div>
   </div>
-  <div class="scroll-hint"><span class="scroll-bar"></span>Scroll</div>
+  <div class="scue"><span class="sbar"></span>Scroll</div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker" style="position:relative;z-index:2">
-  <div class="ticker-track">
-    <span class="ti">10:9 MEDIA</span><span class="ti sep">✦</span>
-    <span class="ti">CHRISTIAN MEDIA</span><span class="ti sep">✦</span>
-    <span class="ti">ROMANS 10:9</span><span class="ti sep">✦</span>
-    <span class="ti">WE MAKE BETTER STORIES</span><span class="ti sep">✦</span>
-    <span class="ti">FAITH · MEDIA · COMMUNITY</span><span class="ti sep">✦</span>
-    <span class="ti">#TEN9PROMO</span><span class="ti sep">✦</span>
-    <span class="ti">10:9 MEDIA</span><span class="ti sep">✦</span>
-    <span class="ti">CHRISTIAN MEDIA</span><span class="ti sep">✦</span>
-    <span class="ti">ROMANS 10:9</span><span class="ti sep">✦</span>
-    <span class="ti">WE MAKE BETTER STORIES</span><span class="ti sep">✦</span>
-    <span class="ti">FAITH · MEDIA · COMMUNITY</span><span class="ti sep">✦</span>
-    <span class="ti">#TEN9PROMO</span><span class="ti sep">✦</span>
+<div class="tick">
+  <div class="tt">
+    <span class="ti">10:9 MEDIA</span><span class="ti sp">✦</span>
+    <span class="ti">CHRISTIAN MEDIA GROUP</span><span class="ti sp">✦</span>
+    <span class="ti">ROMANS 10:9</span><span class="ti sp">✦</span>
+    <span class="ti">WE MAKE BETTER STORIES</span><span class="ti sp">✦</span>
+    <span class="ti">FAITH · MEDIA · COMMUNITY</span><span class="ti sp">✦</span>
+    <span class="ti">#TEN9PROMO</span><span class="ti sp">✦</span>
+    <span class="ti">10:9 MEDIA</span><span class="ti sp">✦</span>
+    <span class="ti">CHRISTIAN MEDIA GROUP</span><span class="ti sp">✦</span>
+    <span class="ti">ROMANS 10:9</span><span class="ti sp">✦</span>
+    <span class="ti">WE MAKE BETTER STORIES</span><span class="ti sp">✦</span>
+    <span class="ti">FAITH · MEDIA · COMMUNITY</span><span class="ti sp">✦</span>
+    <span class="ti">#TEN9PROMO</span><span class="ti sp">✦</span>
   </div>
 </div>
 
-<!-- SERVICES - 3D -->
-<section id="services">
-  <div class="section-header">
-    <p class="lbl">What We Do</p>
-    <h2 class="stitle">OUR SERVICES<br>IN 3D</h2>
+<section id="products">
+  <div class="sh">
+    <p class="lbl">Our Media</p>
+    <h2 class="st">WHAT WE<br>PRODUCE</h2>
   </div>
-  <canvas id="svc-canvas"></canvas>
-  <p class="svc-hint">Drag to rotate · Hover to inspect</p>
+  <canvas id="pcanvas"></canvas>
+  <p class="phint">Drag to explore · Hover any package</p>
 </section>
 
-<!-- MISSION -->
-<section id="mission">
-  <div class="mission-text">
-    <p class="lbl" style="justify-content:flex-start">Our Mission</p>
-    <h2 class="stitle">THE STORY<br>BEHIND<br>THE STORY</h2>
-    <p>10:9 Media is an independent Christian media company rooted in Romans 10:9. We exist to amplify faith-based voices, cover events through a Christian lens, and promote artists who create for the Kingdom.</p>
-    <p>From community events to Christian artist features — we go where the story is and tell it with clarity, conviction, and creativity.</p>
-    <div class="pull-quote">
-      <blockquote>"If you confess with your mouth the Lord Jesus, and believe in your heart that God raised him from the dead, you will be saved."</blockquote>
+<section id="about">
+  <div class="at">
+    <p class="lbl" style="justify-content:flex-start">Who We Are</p>
+    <h2 class="st">THE STORY<br>BEHIND<br>THE STORY</h2>
+    <p>10:9 Media is an independent Christian media group rooted in Romans 10:9. We amplify faith-based voices, cover events through a Christian lens, and give Christian artists a platform to reach the Kingdom.</p>
+    <p>From community events to long-form artist features — we go where the story is and tell it with the clarity, conviction, and creativity it deserves.</p>
+    <div class="pq">
+      <q>If you confess with your mouth the Lord Jesus, and believe in your heart that God raised him from the dead, you will be saved.</q>
       <cite>— Romans 10:9</cite>
     </div>
   </div>
   <div>
-    <div class="stat-grid">
-      <div class="stat"><span class="stat-n">25K</span><span class="stat-l">Posts Published</span></div>
-      <div class="stat"><span class="stat-n">1.1K</span><span class="stat-l">Community</span></div>
-      <div class="stat"><span class="stat-n">7+</span><span class="stat-l">Years Active</span></div>
-      <div class="stat"><span class="stat-n">100%</span><span class="stat-l">Faith Driven</span></div>
+    <div class="sg">
+      <div class="ss"><span class="sn">25K</span><span class="sl">Posts Published</span></div>
+      <div class="ss"><span class="sn">1.1K</span><span class="sl">Community</span></div>
+      <div class="ss"><span class="sn">7+</span><span class="sl">Years Active</span></div>
+      <div class="ss"><span class="sn">100%</span><span class="sl">Faith Driven</span></div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
-  <div class="contact-inner">
-    <div>
+  <div class="cin">
+    <div class="ci">
       <p class="lbl">Get In Touch</p>
-      <h2 class="stitle">SUBMIT<br>YOUR<br>STORY</h2>
-      <p class="contact-info">Christian artist needing promotion? Event to cover? Want to partner with us? Reach out.</p>
-      <div class="clinks">
-        <a href="mailto:stephen@ten9media.com" class="clink"><div class="clink-ico">@</div>stephen@ten9media.com</a>
-        <a href="https://www.instagram.com/ten9media1" target="_blank" class="clink"><div class="clink-ico">IG</div>@ten9media1</a>
-        <a href="https://www.facebook.com/ten9media1" target="_blank" class="clink"><div class="clink-ico">fb</div>10:9 Media on Facebook</a>
+      <h2 class="st">SUBMIT<br>YOUR<br>STORY</h2>
+      <p>Christian artist needing promotion? Event coverage? Want to partner with a faith-based media group? We want to hear from you.</p>
+      <div class="cls">
+        <a href="mailto:stephen@ten9media.com" class="cl"><div class="ci2">@</div>stephen@ten9media.com</a>
+        <a href="https://www.instagram.com/ten9media1" target="_blank" class="cl"><div class="ci2">IG</div>@ten9media1</a>
+        <a href="https://www.facebook.com/ten9media1" target="_blank" class="cl"><div class="ci2">fb</div>10:9 Media on Facebook</a>
       </div>
     </div>
-    <form class="cform" onsubmit="handleForm(event)">
-      <div class="row2">
+    <form class="cf" onsubmit="doForm(event)">
+      <div class="r2">
         <div class="ff"><input type="text" placeholder="Your Name" required></div>
         <div class="ff"><input type="email" placeholder="Email Address" required></div>
       </div>
       <div class="ff">
-        <select><option value="" disabled selected>Type of Inquiry</option>
+        <select><option value="" disabled selected>Inquiry Type</option>
         <option>Artist Promotion (#Ten9Promo)</option>
         <option>Event Coverage Request</option>
         <option>Media Partnership</option>
-        <option>Submit Content</option>
-        <option>Interview / Feature</option>
+        <option>Submit Content / Story</option>
+        <option>Interview or Feature</option>
         <option>Other</option></select>
       </div>
       <div class="ff"><input type="text" placeholder="Ministry / Brand / Project (optional)"></div>
       <div class="ff"><textarea placeholder="Tell us about your project or inquiry..."></textarea></div>
-      <button type="submit" class="csubmit">Send Message</button>
+      <button type="submit" class="csub">Send Message</button>
     </form>
   </div>
 </section>
 
 <footer>
-  <div class="flogo">10:9 MEDIA</div>
-  <span class="fverse">"...you will be saved." — Romans 10:9</span>
-  <span class="fcopy">© 2026 10:9 Media. All rights reserved.</span>
-  <div class="flinks">
+  <span class="fl">10:9 MEDIA</span>
+  <span class="fv">"...you will be saved." — Romans 10:9</span>
+  <span class="fc">© 2026 10:9 Media. All rights reserved.</span>
+  <div class="fls">
     <a href="https://www.instagram.com/ten9media1" target="_blank">Instagram</a>
     <a href="https://www.facebook.com/ten9media1" target="_blank">Facebook</a>
     <a href="mailto:stephen@ten9media.com">Email</a>
   </div>
 </footer>
 
-<!-- THREE.JS CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 
 <script type="module">
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-/* ───────────────────────── HERO BG SCENE ───────────────────────── */
-{
+/* ══════════════ HERO BACKGROUND — 3D CROSS ══════════════ */
+(()=>{
   const canvas = document.getElementById('bg');
-  const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setClearColor(0x000000, 1);
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.2;
+  const R = new THREE.WebGLRenderer({canvas, antialias:true, alpha:false});
+  R.setPixelRatio(Math.min(devicePixelRatio,2));
+  R.setSize(innerWidth, innerHeight);
+  R.setClearColor(0x000000,1);
+  R.toneMapping = THREE.ACESFilmicToneMapping;
+  R.toneMappingExposure = 1.3;
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x000000, 0.08);
+  scene.fog = new THREE.FogExp2(0x000000, 0.07);
 
-  const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 100);
-  camera.position.set(0, 0, 6);
+  const cam = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, .1, 120);
+  cam.position.set(0,0,6.5);
 
-  // ── Cross ──
-  function buildCross(mat) {
+  function mkCross(mat, scale=1){
     const g = new THREE.Group();
-    const vMesh = new THREE.Mesh(new THREE.BoxGeometry(0.28, 3.2, 0.28), mat);
-    const hMesh = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.28, 0.28), mat);
-    hMesh.position.y = 0.65;
-    g.add(vMesh, hMesh);
+    g.add(new THREE.Mesh(new THREE.BoxGeometry(.26*scale,3.0*scale,.26*scale), mat));
+    const h = new THREE.Mesh(new THREE.BoxGeometry(1.7*scale,.26*scale,.26*scale), mat);
+    h.position.y = .6*scale;
+    g.add(h);
     return g;
   }
 
-  const crossMat = new THREE.MeshStandardMaterial({
-    color: 0xffffff,
-    emissive: 0xffffff,
-    emissiveIntensity: 0.08,
-    roughness: 0.1,
-    metalness: 0.9,
-    transparent: true,
-    opacity: 0.55,
+  // Main cross — metallic white
+  const mainMat = new THREE.MeshStandardMaterial({
+    color:0xffffff, emissive:0xffffff, emissiveIntensity:.06,
+    roughness:.08, metalness:.95, transparent:true, opacity:.6
   });
+  const mainCross = mkCross(mainMat);
+  mainCross.scale.setScalar(1.5);
+  scene.add(mainCross);
 
-  const crossMain = buildCross(crossMat);
-  crossMain.position.set(0, 0, 0);
-  crossMain.scale.setScalar(1.4);
-  scene.add(crossMain);
-
-  // Ghost crosses behind
+  // Ghost crosses
   const ghostMat = new THREE.MeshStandardMaterial({
-    color:0xffffff, emissive:0xffffff, emissiveIntensity:0.02,
-    roughness:0.4, metalness:0.6, transparent:true, opacity:0.12, wireframe:false
+    color:0xffffff, emissive:0xc9a84c, emissiveIntensity:.015,
+    roughness:.5, metalness:.3, transparent:true, opacity:.08
   });
-  const ghostPositions = [[-3,-1,-4],[ 3, 1,-5],[-1.5, 2,-6],[2,-2,-3]];
-  ghostPositions.forEach(([x,y,z])=>{
-    const g = buildCross(ghostMat);
+  [[-3.5,-1,-5],[3,1.2,-6],[-1,2.5,-7],[2.5,-1.8,-4]].forEach(([x,y,z])=>{
+    const g = mkCross(ghostMat, .7+Math.random()*.9);
     g.position.set(x,y,z);
-    g.scale.setScalar(0.7 + Math.random()*0.8);
-    g.rotation.z = (Math.random()-0.5)*0.5;
+    g.rotation.z = (Math.random()-.5)*.6;
     scene.add(g);
   });
 
   // Particles
-  const pCount = 350;
-  const pPositions = new Float32Array(pCount * 3);
-  for(let i=0;i<pCount;i++){
-    pPositions[i*3]   = (Math.random()-0.5)*18;
-    pPositions[i*3+1] = (Math.random()-0.5)*14;
-    pPositions[i*3+2] = (Math.random()-0.5)*10;
-  }
+  const pcnt = 400, pp = new Float32Array(pcnt*3);
+  for(let i=0;i<pcnt;i++){pp[i*3]=(Math.random()-.5)*22;pp[i*3+1]=(Math.random()-.5)*16;pp[i*3+2]=(Math.random()-.5)*12}
   const pGeo = new THREE.BufferGeometry();
-  pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions,3));
-  const pMat = new THREE.PointsMaterial({color:0xffffff, size:0.035, transparent:true, opacity:0.5});
-  scene.add(new THREE.Points(pGeo, pMat));
+  pGeo.setAttribute('position',new THREE.BufferAttribute(pp,3));
+  scene.add(new THREE.Points(pGeo,new THREE.PointsMaterial({color:0xffffff,size:.03,transparent:true,opacity:.4})));
 
   // Lights
-  scene.add(new THREE.AmbientLight(0xffffff, 0.3));
-  const dLight = new THREE.DirectionalLight(0xffffff, 1.2);
-  dLight.position.set(3,5,5);
-  scene.add(dLight);
-  const ptA = new THREE.PointLight(0xc9a84c, 3, 12);
-  ptA.position.set(-3,2,2);
-  scene.add(ptA);
-  const ptB = new THREE.PointLight(0xffffff, 2, 10);
-  ptB.position.set(3,-1,3);
-  scene.add(ptB);
+  scene.add(new THREE.AmbientLight(0xffffff,.3));
+  const d1=new THREE.DirectionalLight(0xffffff,1.2); d1.position.set(4,6,5); scene.add(d1);
+  const p1=new THREE.PointLight(0xc9a84c,4,16); p1.position.set(-4,2,2); scene.add(p1);
+  const p2=new THREE.PointLight(0xffffff,2,12); p2.position.set(4,-1,3); scene.add(p2);
 
-  // Mouse
   let mx=0, my=0;
-  window.addEventListener('mousemove', e=>{
-    mx = (e.clientX/window.innerWidth - 0.5)*2;
-    my = -(e.clientY/window.innerHeight - 0.5)*2;
-  });
+  addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*2;my=-(e.clientY/innerHeight-.5)*2});
+  addEventListener('resize',()=>{R.setSize(innerWidth,innerHeight);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()});
 
-  window.addEventListener('resize',()=>{
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    camera.aspect = window.innerWidth/window.innerHeight;
-    camera.updateProjectionMatrix();
-  });
+  const clk=new THREE.Clock();
+  const kids = scene.children.filter(c=>c.isGroup);
 
-  const clock = new THREE.Clock();
-  function animBG(){
-    requestAnimationFrame(animBG);
-    const t = clock.getElapsedTime();
+  (function loop(){
+    requestAnimationFrame(loop);
+    const t=clk.getElapsedTime();
+    mainCross.rotation.y = Math.sin(t*.14)*.22+mx*.1;
+    mainCross.rotation.x = Math.sin(t*.09)*.1+my*.06;
+    mainCross.rotation.z = Math.sin(t*.07)*.05;
+    kids.slice(1).forEach((g,i)=>{g.rotation.y+=.0015+i*.0005;g.rotation.z+=.001});
+    p1.position.x=Math.sin(t*.35)*5; p1.position.y=Math.cos(t*.28)*2.5;
+    p2.position.x=Math.cos(t*.28)*4;
+    R.render(scene,cam);
+  })();
+})();
 
-    crossMain.rotation.y = Math.sin(t*0.15)*0.25 + mx*0.12;
-    crossMain.rotation.x = Math.sin(t*0.1)*0.12 + my*0.08;
-    crossMain.rotation.z = Math.sin(t*0.08)*0.06;
-
-    ghostPositions.forEach((_,i)=>{
-      const c = scene.children.find((ch,ci)=> ch.isGroup && ci===i+2);
-      if(c){ c.rotation.y += 0.002; c.rotation.z += 0.001; }
-    });
-
-    ptA.position.x = Math.sin(t*0.4)*4;
-    ptA.position.y = Math.cos(t*0.3)*2;
-    ptB.position.x = Math.cos(t*0.3)*3;
-
-    renderer.render(scene, camera);
+/* ══════════════ PRODUCT PACKAGES 3D ══════════════ */
+(()=>{
+  const canvas = document.getElementById('pcanvas');
+  function resize(){
+    const W=canvas.clientWidth, H=canvas.clientHeight;
+    R2.setSize(W,H); cam2.aspect=W/H; cam2.updateProjectionMatrix();
   }
-  animBG();
-}
 
-/* ───────────────────────── SERVICE CARDS 3D ───────────────────────── */
-{
-  const canvas2 = document.getElementById('svc-canvas');
-  const W = canvas2.clientWidth, H = canvas2.clientHeight;
-  const renderer2 = new THREE.WebGLRenderer({canvas:canvas2, antialias:true, alpha:false});
-  renderer2.setPixelRatio(Math.min(window.devicePixelRatio,2));
-  renderer2.setSize(W, H);
-  renderer2.setClearColor(0x050505, 1);
-  renderer2.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer2.toneMappingExposure = 1.1;
+  const R2 = new THREE.WebGLRenderer({canvas, antialias:true, alpha:false});
+  R2.setPixelRatio(Math.min(devicePixelRatio,2));
+  R2.setClearColor(0x050505,1);
+  R2.toneMapping = THREE.ACESFilmicToneMapping;
+  R2.toneMappingExposure = 1.2;
 
   const scene2 = new THREE.Scene();
-  scene2.fog = new THREE.FogExp2(0x050505, 0.05);
+  scene2.fog = new THREE.FogExp2(0x050505,.04);
 
-  const cam2 = new THREE.PerspectiveCamera(45, W/H, 0.1, 100);
-  cam2.position.set(0, 0, 10);
+  const cam2 = new THREE.PerspectiveCamera(46, 1, .1, 100);
+  cam2.position.set(0,1.5,14);
+  cam2.lookAt(0,0,0);
 
-  const controls = new OrbitControls(cam2, canvas2);
-  controls.enableDamping = true;
-  controls.dampingFactor = 0.06;
-  controls.minDistance = 5;
-  controls.maxDistance = 18;
-  controls.maxPolarAngle = Math.PI*0.7;
-  controls.autoRotate = true;
-  controls.autoRotateSpeed = 0.5;
+  const ctrl = new OrbitControls(cam2, canvas);
+  ctrl.enableDamping=true; ctrl.dampingFactor=.07;
+  ctrl.minDistance=7; ctrl.maxDistance=22;
+  ctrl.maxPolarAngle=Math.PI*.75;
+  ctrl.autoRotate=true; ctrl.autoRotateSpeed=.6;
 
   // Lights
-  scene2.add(new THREE.AmbientLight(0xffffff, 0.4));
-  const d2 = new THREE.DirectionalLight(0xffffff, 1.4);
-  d2.position.set(5,8,5); scene2.add(d2);
-  const pt2a = new THREE.PointLight(0xc9a84c, 4, 20);
-  pt2a.position.set(-5,3,3); scene2.add(pt2a);
-  const pt2b = new THREE.PointLight(0x4488ff, 2, 15);
-  pt2b.position.set(5,-2,4); scene2.add(pt2b);
+  scene2.add(new THREE.AmbientLight(0xffffff,.5));
+  const d2=new THREE.DirectionalLight(0xffffff,1.6); d2.position.set(6,10,8); scene2.add(d2);
+  const p3=new THREE.PointLight(0xc9a84c,6,22); p3.position.set(-7,4,4); scene2.add(p3);
+  const p4=new THREE.PointLight(0x8888ff,3,18); p4.position.set(7,-3,5); scene2.add(p4);
+  const p5=new THREE.PointLight(0xffffff,2,14); p5.position.set(0,6,2); scene2.add(p5);
 
-  // Service data
-  const svcs = [
-    {label:'CHRISTIAN\nARTIST\nPROMO',   sub:'#Ten9Promo',     color:0xc9a84c},
-    {label:'EVENT\nCOVERAGE',            sub:'On Location',    color:0xffffff},
-    {label:'MEDIA\nSHARING',             sub:'Community Feed', color:0xaaaaaa},
-    {label:'INTERVIEWS\n& FEATURES',     sub:'Long-Form',      color:0xdddddd},
-    {label:'SOCIAL\nCONTENT',            sub:'Short-Form Video',color:0xbbbbbb},
-    {label:'MEDIA\nPARTNERSHIPS',        sub:'Faith Brands',   color:0xc9a84c},
+  // Products
+  const products = [
+    {name:'TEN9\nPROMO',   sub:'ARTIST PROMOTION',  tag:'#Ten9Promo', bg:'#0a0800', accent:'#c9a84c', num:'01'},
+    {name:'THE\nCOVERAGE', sub:'EVENT MEDIA',        tag:'On Location',bg:'#050a0a', accent:'#64d8cb', num:'02'},
+    {name:'THE\nFEATURE',  sub:'INTERVIEWS',         tag:'Long-Form',  bg:'#080808', accent:'#ffffff', num:'03'},
+    {name:'THE\nSTORY',    sub:'COMMUNITY FEED',     tag:'Daily Media',bg:'#050508', accent:'#a78bfa', num:'04'},
+    {name:'THE\nWORD',     sub:'FAITH CONTENT',      tag:'Romans 10:9',bg:'#080500', accent:'#fbbf24', num:'05'},
   ];
 
-  // Generate canvas texture for each card
-  function makeCardTexture(svc) {
-    const tc = document.createElement('canvas');
-    tc.width = 512; tc.height = 512;
-    const ctx = tc.getContext('2d');
+  function makeBoxTex(p, face){
+    const tc=document.createElement('canvas');
+    tc.width=512; tc.height=512;
+    const c=tc.getContext('2d');
+    c.fillStyle=p.bg; c.fillRect(0,0,512,512);
 
-    // Background gradient
-    const grad = ctx.createLinearGradient(0,0,512,512);
-    grad.addColorStop(0,'#0a0a0a');
-    grad.addColorStop(1,'#111');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0,0,512,512);
-
-    // Border
-    ctx.strokeStyle = `rgba(255,255,255,0.15)`;
-    ctx.lineWidth = 3;
-    ctx.strokeRect(8,8,496,496);
-
-    // Inner accent line (gold)
-    const r = ((svc.color>>16)&0xff), g2=((svc.color>>8)&0xff), b=(svc.color&0xff);
-    ctx.strokeStyle = `rgb(${r},${g2},${b})`;
-    ctx.lineWidth = 2;
-    ctx.strokeRect(20,20,472,472);
-
-    // Small cross icon top-left
-    ctx.fillStyle = `rgba(${r},${g2},${b},0.5)`;
-    ctx.fillRect(44, 44, 6, 28);
-    ctx.fillRect(38, 52, 18, 6);
-
-    // Number
-    ctx.fillStyle = `rgba(255,255,255,0.06)`;
-    ctx.font = 'bold 180px Arial';
-    ctx.textAlign = 'right';
-    ctx.fillText(String(svcs.indexOf(svc)+1).padStart(2,'0'), 490, 220);
-
-    // Label
-    ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 56px Arial';
-    ctx.textAlign = 'left';
-    const lines = svc.label.split('\n');
-    lines.forEach((l,i)=> ctx.fillText(l, 44, 280 + i*62));
-
-    // Sub label
-    ctx.fillStyle = `rgb(${r},${g2},${b})`;
-    ctx.font = '26px Arial';
-    ctx.letterSpacing = '3px';
-    ctx.fillText(svc.sub.toUpperCase(), 44, 440);
-
-    // Bottom line
-    ctx.fillStyle = `rgba(${r},${g2},${b},0.4)`;
-    ctx.fillRect(44, 460, 120, 2);
-
+    if(face==='front'){
+      // Top accent bar
+      c.fillStyle=p.accent; c.fillRect(0,0,512,8);
+      // Border
+      c.strokeStyle=p.accent+'44'; c.lineWidth=2; c.strokeRect(12,12,488,488);
+      // Small cross
+      c.fillStyle=p.accent+'bb';
+      c.fillRect(44,42,7,32); c.fillRect(37,52,21,7);
+      // Big number ghost
+      c.fillStyle='rgba(255,255,255,0.04)';
+      c.font='bold 200px Arial Black'; c.textAlign='right';
+      c.fillText(p.num,500,210);
+      // Name
+      c.fillStyle='#ffffff'; c.font='bold 64px Arial'; c.textAlign='left';
+      const lines=p.name.split('\n');
+      lines.forEach((l,i)=>c.fillText(l,44,240+i*70));
+      // Sub
+      c.fillStyle=p.accent; c.font='bold 22px Arial'; c.letterSpacing='4px';
+      c.fillText(p.sub.toUpperCase(),44,400);
+      // Tag
+      c.fillStyle='rgba(255,255,255,0.35)'; c.font='18px Arial'; c.letterSpacing='2px';
+      c.fillText(p.tag.toUpperCase(),44,435);
+      // Bottom bar
+      c.fillStyle=p.accent+'55'; c.fillRect(44,462,180,2);
+      // 10:9 watermark
+      c.fillStyle='rgba(255,255,255,0.1)'; c.font='bold 15px Arial'; c.letterSpacing='3px';
+      c.textAlign='right'; c.fillText('10:9 MEDIA',490,490);
+    } else if(face==='side'){
+      c.fillStyle=p.accent; c.fillRect(0,0,8,512);
+      c.fillStyle='rgba(255,255,255,0.12)'; c.font='bold 28px Arial';
+      c.textAlign='center';
+      c.save(); c.translate(256,256); c.rotate(-Math.PI/2);
+      c.fillText('10:9 MEDIA — '+p.sub,0,10);
+      c.restore();
+    } else {
+      // top/bottom
+      c.fillStyle=p.accent+'33'; c.fillRect(0,0,512,512);
+      c.fillStyle=p.accent; c.font='bold 40px Arial'; c.textAlign='center';
+      c.fillText('10:9',256,270);
+    }
     return new THREE.CanvasTexture(tc);
   }
 
-  // Place cards in a ring
-  const cards = [];
-  const radius = 5;
-  svcs.forEach((svc,i)=>{
-    const angle = (i/svcs.length) * Math.PI*2;
-    const geo = new THREE.BoxGeometry(2.8, 2.8, 0.18);
-    const tex = makeCardTexture(svc);
-    const mat = new THREE.MeshStandardMaterial({
-      map: tex,
-      roughness: 0.2,
-      metalness: 0.5,
-    });
-    const edgeMat = new THREE.MeshStandardMaterial({color:0x111111, roughness:0.8});
-    const mats = [edgeMat,edgeMat,edgeMat,edgeMat,mat,edgeMat];
-    const mesh = new THREE.Mesh(geo, mats);
-
-    mesh.position.x = Math.sin(angle)*radius;
-    mesh.position.y = Math.cos(angle*0.5)*0.8;
-    mesh.position.z = Math.cos(angle)*radius;
-    mesh.rotation.y = -angle;
-    mesh.userData = {baseAngle:angle, baseY:mesh.position.y};
-
+  const meshes=[];
+  products.forEach((p,i)=>{
+    const angle=(i/products.length)*Math.PI*2;
+    const r=5.5;
+    const geo=new THREE.BoxGeometry(2.4,3.2,.18);
+    const mats=[
+      new THREE.MeshStandardMaterial({map:makeBoxTex(p,'side'),roughness:.2,metalness:.4}),
+      new THREE.MeshStandardMaterial({map:makeBoxTex(p,'side'),roughness:.2,metalness:.4}),
+      new THREE.MeshStandardMaterial({map:makeBoxTex(p,'top'),roughness:.3,metalness:.3}),
+      new THREE.MeshStandardMaterial({map:makeBoxTex(p,'top'),roughness:.3,metalness:.3}),
+      new THREE.MeshStandardMaterial({map:makeBoxTex(p,'front'),roughness:.1,metalness:.5}),
+      new THREE.MeshStandardMaterial({color:0x111111,roughness:.8}),
+    ];
+    const mesh=new THREE.Mesh(geo,mats);
+    mesh.position.x=Math.sin(angle)*r;
+    mesh.position.y=Math.sin(i*1.2)*.4;
+    mesh.position.z=Math.cos(angle)*r;
+    mesh.rotation.y=-angle;
+    mesh.userData={base:{x:mesh.position.x,y:mesh.position.y,z:mesh.position.z},i};
     scene2.add(mesh);
-    cards.push(mesh);
+    meshes.push(mesh);
   });
 
-  // Floating cross at center
-  function buildSmallCross(mat){
-    const g=new THREE.Group();
-    g.add(new THREE.Mesh(new THREE.BoxGeometry(0.12,1.4,0.12),mat));
-    const h=new THREE.Mesh(new THREE.BoxGeometry(0.8,0.12,0.12),mat);
-    h.position.y=0.28; g.add(h);
-    return g;
-  }
-  const cmat2 = new THREE.MeshStandardMaterial({color:0xffffff,emissive:0xffffff,emissiveIntensity:0.3,roughness:0.1,metalness:0.9,transparent:true,opacity:0.7});
-  const centerCross = buildSmallCross(cmat2);
-  scene2.add(centerCross);
+  // Center cross
+  const cmat=new THREE.MeshStandardMaterial({color:0xffffff,emissive:0xffffff,emissiveIntensity:.4,roughness:.05,metalness:.95,transparent:true,opacity:.75});
+  const cg=new THREE.Group();
+  cg.add(new THREE.Mesh(new THREE.BoxGeometry(.1,1.2,.1),cmat));
+  const ch=new THREE.Mesh(new THREE.BoxGeometry(.7,.1,.1),cmat); ch.position.y=.24; cg.add(ch);
+  scene2.add(cg);
 
-  // Raycaster for hover
-  const raycaster = new THREE.Raycaster();
-  const pointer = new THREE.Vector2();
-  let hoveredCard = null;
-
-  canvas2.addEventListener('pointermove', e=>{
-    const rect = canvas2.getBoundingClientRect();
-    pointer.x = ((e.clientX-rect.left)/rect.width)*2-1;
-    pointer.y = -((e.clientY-rect.top)/rect.height)*2+1;
-    raycaster.setFromCamera(pointer, cam2);
-    const hits = raycaster.intersectObjects(cards);
-    if(hits.length>0){
-      if(hoveredCard !== hits[0].object){ hoveredCard = hits[0].object; controls.autoRotate=false; }
-    } else {
-      hoveredCard=null; controls.autoRotate=true;
-    }
+  // Raycaster
+  const ray=new THREE.Raycaster(), ptr=new THREE.Vector2();
+  let hov=null;
+  canvas.addEventListener('pointermove',e=>{
+    const rc=canvas.getBoundingClientRect();
+    ptr.x=((e.clientX-rc.left)/rc.width)*2-1;
+    ptr.y=-((e.clientY-rc.top)/rc.height)*2+1;
+    ray.setFromCamera(ptr,cam2);
+    const hits=ray.intersectObjects(meshes);
+    hov=hits.length?hits[0].object:null;
+    ctrl.autoRotate=!hov;
   });
-  canvas2.addEventListener('pointerleave', ()=>{ hoveredCard=null; controls.autoRotate=true; });
+  canvas.addEventListener('pointerleave',()=>{hov=null;ctrl.autoRotate=true});
 
-  const clock2 = new THREE.Clock();
-  const resObs = new ResizeObserver(()=>{
-    const W2=canvas2.clientWidth, H2=canvas2.clientHeight;
-    renderer2.setSize(W2,H2); cam2.aspect=W2/H2; cam2.updateProjectionMatrix();
-  });
-  resObs.observe(canvas2);
+  new ResizeObserver(resize).observe(canvas);
+  resize();
 
-  function animSvc(){
-    requestAnimationFrame(animSvc);
-    const t = clock2.getElapsedTime();
-    centerCross.rotation.y = t*0.4;
-    centerCross.rotation.z = Math.sin(t*0.6)*0.15;
-    centerCross.position.y = Math.sin(t*0.5)*0.2;
-
-    cards.forEach((c,i)=>{
-      const isHov = (c===hoveredCard);
-      const targetZ = isHov ? 1.2 : 0;
-      c.position.z += (targetZ - (c.position.z - Math.cos(c.userData.baseAngle)*radius)) * 0.08;
-      c.position.y = c.userData.baseY + Math.sin(t*0.5+i)*0.15 + (isHov?0.2:0);
-      c.rotation.x += (isHov ? -0.05 : 0 - c.rotation.x)*0.06;
-      const targetScale = isHov ? 1.08 : 1.0;
-      c.scale.lerp(new THREE.Vector3(targetScale,targetScale,targetScale), 0.08);
+  const clk2=new THREE.Clock();
+  (function loop2(){
+    requestAnimationFrame(loop2);
+    const t=clk2.getElapsedTime();
+    cg.rotation.y=t*.5; cg.position.y=Math.sin(t*.6)*.2;
+    meshes.forEach((m,i)=>{
+      const isH=(m===hov);
+      const ty=m.userData.base.y+Math.sin(t*.55+i)*.18+(isH?.3:0);
+      m.position.y+=(ty-m.position.y)*.07;
+      m.rotation.x+=(isH?-.04:0-m.rotation.x)*.08;
+      const ts=isH?1.1:1.0; m.scale.setScalar(m.scale.x+(ts-m.scale.x)*.08);
     });
+    p3.position.x=Math.sin(t*.3)*8; p3.position.z=Math.cos(t*.3)*8;
+    ctrl.update();
+    R2.render(scene2,cam2);
+  })();
+})();
 
-    pt2a.position.x = Math.sin(t*0.3)*6;
-    pt2a.position.z = Math.cos(t*0.3)*6;
+/* ══════════════ GSAP HERO ENTRANCE ══════════════ */
+gsap.registerPlugin(ScrollTrigger);
+gsap.to('#badge',{opacity:1,y:0,duration:.9,delay:.2,ease:'power3.out'});
+gsap.to('#h1',   {opacity:1,y:0,duration:1.1,delay:.4,ease:'power3.out'});
+gsap.to('#hv',   {opacity:1,y:0,duration:.9,delay:.7,ease:'power3.out'});
+gsap.to('#hbtns',{opacity:1,y:0,duration:.8,delay:.9,ease:'power3.out'});
 
-    controls.update();
-    renderer2.render(scene2, cam2);
-  }
-  animSvc();
-}
-
-/* NAV scroll */
-window.addEventListener('scroll', ()=>{
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY>60);
-});
+/* Nav scroll */
+addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('s',scrollY>60));
 
 /* Form */
-function handleForm(e){
+window.doForm=function(e){
   e.preventDefault();
-  const b=e.target.querySelector('.csubmit');
-  b.textContent="Sent! We'll be in touch ✓"; b.style.background='#333';
-  setTimeout(()=>{ b.textContent='Send Message'; b.style.background='#000'; e.target.reset(); },4000);
-}
-window.handleForm = handleForm;
+  const b=e.target.querySelector('.csub');
+  b.textContent="Sent! We'll be in touch ✓";b.style.background='#333';
+  setTimeout(()=>{b.textContent='Send Message';b.style.background='#000';e.target.reset()},4e3);
+};
 </script>
 </body>
 </html>
